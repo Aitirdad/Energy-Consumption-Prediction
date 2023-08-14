@@ -24,7 +24,7 @@ def add_lags(df):
     df['lag2'] = (df.index - pd.Timedelta('728 days'))
     df['lag3'] = (df.index - pd.Timedelta('1092 days'))
     return df
-future = pd.date_range(start,end, freq='1h')
+future = pd.date_range(start=start, end=end, freq='1h')
 future_df = pd.DataFrame(index=future)
 df_and_future = create_features(future_df)
 df_and_future = add_lags(df_and_future)
