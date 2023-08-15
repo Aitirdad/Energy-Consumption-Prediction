@@ -30,5 +30,5 @@ df_and_future = create_features(future_df)
 df_and_future = add_lags(df_and_future)
 def predict():
     perdiction = model.get_booster()
-    st.write("perdiction model : ", perdiction.get_dump()[0][127:137], "MegaWatts⚡")
+    st.write("perdiction model : ", perdiction.get_dump()[:][127:137], "MegaWatts⚡")
 trigger = st.button('Predict', on_click=predict)
