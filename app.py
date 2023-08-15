@@ -29,6 +29,13 @@ future_df = pd.DataFrame(index=future)
 df_and_future = create_features(future_df)
 df_and_future = add_lags(df_and_future)
 def predict():
-    perdiction = model.get_booster()
-    st.write("perdiction model : ", perdiction.get_dump()[:][127:137], "MegaWatts⚡")
+    global leaf_index
+    if leaf_index < len(model.get_dump()):
+        leaf_output = model.get_dump()[leaf_index][127:137]
+        st.write("Prediction from leaf", leaf_index, ":", leaf_output, "MegaWatts⚡")
+        leaf_index += 1
+    else:
+        st.write("No more leaves to display.")
+
+leaf_index = 0
 trigger = st.button('Predict', on_click=predict)
